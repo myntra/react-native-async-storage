@@ -33,14 +33,25 @@ if( newDbSize != null && newDbSize.isLong()) {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
-    buildToolsVersion getExtOrDefault('buildToolsVersion')
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion getExtOrIntegerDefault('minSdkVersion')
-        targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
-
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         buildConfigField "Long", "AsyncStorage_db_size", "${dbSizeInMB}L"
+    }
+
+    buildTypes {
+        debug {}
+        qa {}
+        fox {}
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        sourceSets {}
+        splits {}
     }
 }
 

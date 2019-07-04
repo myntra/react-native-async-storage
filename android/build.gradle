@@ -39,6 +39,6 @@ repositories {
 }
 
 dependencies {
-    implementation project(':react-native')
+    implementation 'com.facebook.react:react-native:+'
 }
   
